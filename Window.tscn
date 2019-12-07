@@ -1,0 +1,170 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+export(String) var title = null
+export(int) var title_bar_height = 32
+export(Vector2) var window_size = Vector2(800,480)
+export(bool) var window_resizable = false
+export(bool) var window_borderless = true
+export(bool) var window_ontop = true
+export(bool) var window_fullscreen = false
+export(bool) var window_maximized = false
+enum stretch_mode_enum {disabled,_2D,viewport}
+export (stretch_mode_enum) var stretch_mode = stretch_mode_enum.viewport
+enum stretch_aspect_enum {ignore, keep, keep_width, keep_height, expand}
+export(stretch_aspect_enum) var stretch_aspect = stretch_aspect_enum.ignore
+export(float, 1, 8) var stretch_shrink = 1.0
+export(bool) var auto_scene_change = false
+export(PackedScene) var scene_to_load = null
+var following = false
+var dragging_start_position = Vector2()
+
+func _ready():
+	if title != null:
+		$Window/Titlebar/Title.text = title
+	call_deferred(\"resize_window\");
+	
+func resize_window():
+	var win_pos_centered = OS.window_position + OS.window_size/2
+	OS.window_size = window_size
+	OS.window_position = win_pos_centered - OS.window_size/2
+	$Window/Content.anchor_top = 32/window_size.y # Content anchor
+	
+	############################################
+	OS.window_borderless = window_borderless
+	OS.window_fullscreen = window_fullscreen
+	OS.window_resizable = window_resizable
+	OS.window_maximized = window_maximized
+	############################################
+	
+	after_resize()
+	
+func after_resize():
+	if auto_scene_change:
+		get_tree().change_scene_to(scene_to_load)
+
+func _process(_delta):
+	if following:
+		OS.set_window_position(OS.window_position + get_global_mouse_position() - dragging_start_position)
+
+func _on_Titlebar_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.get_button_index() == 1:
+			following = !following
+			dragging_start_position = get_local_mouse_position()
+
+func _on_ButtonQuit_pressed():
+	get_tree().quit()
+"
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.14902, 0.14902, 0.14902, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+title = "Abc"
+
+[node name="Window" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Titlebar" type="Panel" parent="Window"]
+anchor_right = 1.0
+margin_right = 3.05176e-05
+margin_bottom = 32.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonQuit" type="Button" parent="Window/Titlebar"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -32.0
+margin_right = -3.05176e-05
+margin_bottom = 32.0
+focus_mode = 0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Window/Titlebar"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -292.0
+margin_top = 3.0
+margin_right = 293.0
+margin_bottom = 29.0
+text = "TITLE_BAR_TITLE"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="Control" parent="Window"]
+anchor_top = 0.067
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.16
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+[connection signal="gui_input" from="Window/Titlebar" to="." method="_on_Titlebar_gui_input"]
+[connection signal="pressed" from="Window/Titlebar/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]

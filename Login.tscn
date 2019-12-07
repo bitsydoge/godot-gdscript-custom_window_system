@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Window.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.14902, 0.14902, 0.14902, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+
+
+func _on_Ok_pressed():
+	get_tree().change_scene(\"res://Resizer_GameRun.tscn\")
+	pass # Replace with function body.
+"
+
+[node name="Control" instance=ExtResource( 1 )]
+title = "Login"
+window_size = Vector2( 400, 180 )
+
+[node name="Titlebar" parent="Window" index="0"]
+margin_right = 6.10352e-05
+
+[node name="Title" parent="Window/Titlebar" index="1"]
+margin_left = -294.0
+margin_top = 4.0
+margin_right = 295.0
+margin_bottom = 26.0
+
+[node name="Title-Password" type="Label" parent="Window/Content" index="0"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -106.5
+margin_top = -7.0
+margin_right = -51.5
+margin_bottom = 7.0
+text = "Pass     :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title-Pseudo" type="Label" parent="Window/Content" index="1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -107.5
+margin_top = -43.0
+margin_right = -52.5
+margin_bottom = -29.0
+text = "Pseudo :"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="TextureRect" parent="Window/Content" index="2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -183.0
+margin_top = -50.0
+margin_right = -119.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pseudo" type="LineEdit" parent="Window/Content" index="3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -46.0
+margin_right = 187.0
+margin_bottom = -25.0
+custom_styles/normal = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="LineEdit" parent="Window/Content" index="4"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -39.0
+margin_top = -9.0
+margin_right = 187.0
+margin_bottom = 11.0
+custom_styles/normal = SubResource( 1 )
+secret = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ok" type="Button" parent="Window/Content" index="5"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -62.0
+margin_top = -39.0
+margin_right = 62.0
+margin_bottom = -13.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "Ok"
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Window/Content/Ok" to="Window/Content/Ok" method="_on_Ok_pressed"]
