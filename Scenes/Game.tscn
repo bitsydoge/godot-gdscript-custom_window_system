@@ -24,7 +24,7 @@ func _process(delta):
 	position.y = clamp(position.y, 0, screen_size.y)
 "
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -32,7 +32,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.14902, 0.14902, 0.14902, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -40,7 +40,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -48,11 +48,11 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=5]
 script/source = "extends Button
 
 func _on_Ok_pressed():
-	get_tree().change_scene(\"res://Config_Menu.tscn\")
+	get_tree().change_scene(\"res://Scenes/WindowC_Config.tscn\")
 "
 
 [node name="Node2D" type="Node2D"]
@@ -62,26 +62,26 @@ position = Vector2( 398.001, 232 )
 texture = ExtResource( 1 )
 script = SubResource( 1 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ok" type="Button" parent="CanvasLayer/Control"]
+[node name="Ok" type="Button" parent="UI/Control"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 81.0
 margin_bottom = 36.0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
 text = "Config"
-script = SubResource( 6 )
+script = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="CanvasLayer/Control/Ok" to="CanvasLayer/Control/Ok" method="_on_Ok_pressed"]
+[connection signal="pressed" from="UI/Control/Ok" to="UI/Control/Ok" method="_on_Ok_pressed"]

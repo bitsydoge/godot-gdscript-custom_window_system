@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Window.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/WindowC.tscn" type="PackedScene" id=1]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -10,7 +10,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.14902, 0.14902, 0.14902, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -18,7 +18,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -26,11 +26,11 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.372549, 0.372549, 1 )
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Button
 
 func _on_Ok3_pressed():
-	get_tree().change_scene(\"res://Resizer_GameRun.tscn\")
+	get_tree().change_scene(\"res://Scenes/WindowC_Resizer_Game.tscn\")
 "
 
 [node name="Control" index="0" instance=ExtResource( 1 )]
@@ -46,9 +46,9 @@ margin_left = -62.0
 margin_top = -59.0
 margin_right = 62.0
 margin_bottom = -33.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 text = "Option1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,9 +63,9 @@ margin_left = -62.0
 margin_top = -13.0
 margin_right = 62.0
 margin_bottom = 13.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 text = "Option2"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -80,11 +80,11 @@ margin_left = -62.0
 margin_top = 33.0
 margin_right = 62.0
 margin_bottom = 59.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 text = "ReturnGame"
-script = SubResource( 5 )
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

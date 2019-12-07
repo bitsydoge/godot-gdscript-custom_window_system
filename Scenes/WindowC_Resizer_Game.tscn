@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Window.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GameRun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/WindowC.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
 
 [node name="Control" instance=ExtResource( 1 )]
 title = "GameRun"
-window_size = Vector2( 800, 480 )
 window_resizable = true
 window_borderless = false
 window_ontop = false
